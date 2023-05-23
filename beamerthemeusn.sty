@@ -1,53 +1,34 @@
-\ProvidesClass{beamerthemeusn}[2018/06/25]
+%% beamerthemeusn.sty - a LaTeX beamer theme for presentations at USN
+%%
+%% CC-BY barskern, 2023
+%%
+%% Mainly based on https://github.com/USN-latex/USN-Beamer-Template, but also
+%% included changes from https://github.com/barskern/thesis-USN.
+
+\xdef\usnbeamerdate{2018/06/25}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{beamerthemeusn}
+ [\usnbeamerdate\space
+   CC-BY barskern at USN 2023]
 
 \mode<presentation>
 
+% All options are passed on to the base class
+\DeclareOption*{%
+    \typeout{Option \CurrentOption\space is passed to package baseusn!}
+    \PassOptionsToPackage{\CurrentOption}{baseusn}
+}%
+
+% Process options in calling order
+\ProcessOptions*
+
+% Reuse the base USN class
+\RequirePackage{baseusn}
+
+%% Load packages
+
 \RequirePackage{pgf}
-\RequirePackage[authoryear,round]{natbib}
-\RequirePackage{xcolor}
 \RequirePackage{textcomp}
-\RequirePackage[defaultsans]{opensans}
-
-%%% new colours as of 2023
-% level 1
-\definecolor{lilla}{RGB}{120,0,240}
-\definecolor{medium-lilla}{RGB}{147,89,239}
-\definecolor{lys-lilla}{RGB}{205,185,252}
-\definecolor{indigo}{RGB}{47,11,99}
-\definecolor{medium-indigo}{RGB}{149,149,249}
-\definecolor{lys-indigo}{RGB}{218,217,255}
-% level 2
-\definecolor{oransje}{RGB}{255,98,2}
-\definecolor{beige}{RGB}{255,217,177}
-\definecolor{medium-beige}{RGB}{255,235,211}
-\definecolor{lys-beige}{RGB}{255,245,238}
-% level 3
-\definecolor{rosa}{RGB}{239,125,187}
-\definecolor{medium-rosa}{RGB}{255,204,237}
-\definecolor{syregronn}{RGB}{207,255,31}
-\definecolor{medium-syregronn}{RGB}{228,255,125}
-
-%%% old signal colours 2018-2023
-% colours
-\definecolor{PMS2369U}{RGB}{70,70,165}
-\definecolor{PMS200U}{RGB}{214,67,73}
-\definecolor{PMS120U}{RGB}{255,210,64}
-\definecolor{PMS312U}{RGB}{39,178,208}
-\definecolor{PMS2400U}{RGB}{59,175,162}
-% support colours
-\definecolor{PMS3005U}{RGB}{15,118,175}
-\definecolor{PMS310U}{RGB}{154,212,226}
-\definecolor{PMS327U}{RGB}{0,151,138}
-\definecolor{PMS358U}{RGB}{157,210,159}
-% additional colours
-\definecolor{PMS2332U}{RGB}{140,150,150}
-\definecolor{PMS2331U}{RGB}{175,182,179}
-\definecolor{PMS434U}{RGB}{210,215,215}
-\definecolor{PMS444U}{RGB}{126,148,146}
-\definecolor{PMS442U}{RGB}{166,182,179}
-\definecolor{PMS538U}{RGB}{200,215,215}
-% special colour
-\definecolor{PMS876}{RGB}{148,102,75} % copper
 
 \setbeamercolor{frametitle}{fg=black}
 \setbeamercolor{title}{fg=black}
@@ -70,6 +51,7 @@
 \setlength{\usnfgheight}{\usnrulestart}
 \addtolength{\usnfgheight}{-1.5\usnspacing}
 
+
 %% turn off all navigation symbols
 \setbeamertemplate{navigation symbols}{}
 
@@ -77,8 +59,9 @@
 \setbeamertemplate{blocks}[rounded][shadow=true]
 
 %% load pictures that are used one several slides
-\pgfdeclareimage[height=0.15\paperheight,interpolate=true]{usnlogo}{./figs/usnlogo}
-\pgfdeclareimage[height=12pt,interpolate=true]{usn}{./figs/usnlogo}
+%\showthe\USNLogoName
+\pgfdeclareimage[height=0.15\paperheight,interpolate=true]{usnlogo}{./figures/\USNLogoName}
+\pgfdeclareimage[height=12pt,interpolate=true]{usn}{./figures/\USNLogoName}
 
 %% Name in footer
 \newcommand{\usnfootername}{%
@@ -123,10 +106,13 @@
 }
 
 %% fonts and title formatting
-\usefonttheme[onlymath]{serif}
-\setbeamerfont{frametitle}{family=\rmfamily}
+%\usefonttheme[onlymath]{serif}
+%\setbeamerfont{frametitle}{family=\rmfamily}
 %\setbeamercolor{framesubtitle}{fg=medium-lilla}
-\setbeamerfont{title}{family=\rmfamily,series=\bfseries,size=\Large}
+%\setbeamerfont{title}{family=\rmfamily,series=\bfseries,size=\Large}
+
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{title}{series=\bfseries,size=\Large}
 \setbeamerfont{author}{series=\bfseries}
 \setbeamercolor{author}{fg=lilla}
 \setbeamercolor{institute}{fg=lilla}
@@ -140,7 +126,6 @@
 \setbeamertemplate{itemize subsubitem}[rectangle]
 %\setbeamertmeplate{itemize item subsubitem}[circle]
 %\setbeamertemplate{bibliography item}[text]
-\bibliographystyle{apalike}
 
 \setbeamertemplate{headline}{
      \begin{pgfpicture}{0}{0}{\paperwidth}{0.042\paperheight}
@@ -154,7 +139,7 @@
   \begin{pgfpicture}{0}{0}{\paperwidth}{1.5\usnspacing}
     \pgfputat{\pgfpoint{\usnspacing}{0.5\usnspacing}}{\pgfbox[left,base]{%
         \parbox{\usnrulewidth}{\usnfooterlogo \hfill
-          \insertshorttitle ~ \insertshortsubtitle \hfill
+          \insertshorttitle~--~\insertshortsubtitle \hfill
           \insertframenumber / \inserttotalframenumber}
      }}
   \end{pgfpicture}

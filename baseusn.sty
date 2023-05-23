@@ -1,0 +1,247 @@
+%% Base LaTeX definitions for USN-based documents
+
+\xdef\usnbeamerdate{2023/05/23}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{baseusn}
+ [\usnbeamerdate\space
+   CC-BY barskern at USN 2023]
+
+%% Define languages and their representative names/shortcuts
+
+% British
+\newif\ifcapitalize
+\DeclareOption{british}{
+    \capitalizetrue
+    \def\papername{Paper}
+    \newcommand{\USN}{{U}niversity of {S}outh-{E}astern {N}orway}
+    \newcommand{\CampusKongsberg}{{C}ampus {K}ongsberg}
+    \newcommand{\FacultyTNM}{{F}aculty of {T}echnology, {N}atural {S}ciences and {M}aritime {S}ciences}
+    \newcommand{\DepartmentSIS}{{D}epartment of {S}cience and {I}ndustry {S}ystems}
+    \newcommand{\USNLogoName}{USN-logo_black-EN}
+    \AtBeginDocument{
+        \renewcommand{\lstlistingname}{Code listing}
+        \renewcommand{\lstlistlistingname}{Code Listings}
+        \crefname{listing}{Code listing}{Code listings}
+        \crefname{paper}{Paper}{Papers}
+        \addto\captionsbritish{
+            \renewcommand{\contentsname}{Contents}
+            \renewcommand{\listfigurename}{Figures}
+            \renewcommand{\listtablename}{Tables}
+            \renewcommand{\glossaryname}{Glossary}
+            \renewcommand{\acronymname}{Acronyms}
+        }
+    }
+}
+
+% American
+\DeclareOption{american}{
+    \capitalizetrue
+    \def\papername{Paper}
+    \newcommand{\USN}{{U}niversity of {S}outh-{E}astern {N}orway}
+    \newcommand{\CampusKongsberg}{{C}ampus {K}ongsberg}
+    \newcommand{\FacultyTNM}{{F}aculty of {T}echnology, {N}atural {S}ciences and {M}aritime {S}ciences}
+    \newcommand{\DepartmentSIS}{{D}epartment of {S}cience and {I}ndustry {S}ystems}
+    \newcommand{\USNLogoName}{USN-logo_black-EN}
+    \AtBeginDocument{
+        \renewcommand{\lstlistingname}{Code listing}
+        \renewcommand{\lstlistlistingname}{Code Listings}
+        \crefname{listing}{Code listing}{Code listings}
+        \crefname{paper}{Paper}{Papers}
+        \addto\captionsamerican{
+            \renewcommand{\contentsname}{Contents}
+            \renewcommand{\listfigurename}{Figures}
+            \renewcommand{\listtablename}{Tables}
+            \renewcommand{\glossaryname}{Glossary}
+            \renewcommand{\acronymname}{Acronyms}
+        }
+    }
+}
+
+% Bokmål
+\DeclareOption{norsk}{
+    \capitalizefalse
+    \def\papername{Artikkel}
+    \newcommand{\USN}{{U}niversitetet i {S}ørøst-{N}orge}
+    \newcommand{\CampusKongsberg}{campus {K}ongsberg}
+    \newcommand{\FacultyTNM}{{F}akultet for teknologi, naturvitenskap og maritime fag}
+    \newcommand{\DepartmentSIS}{{I}nstitutt for realfag og industrisystem}
+    \newcommand{\USNLogoName}{USN-logo_sort}
+    \AtBeginDocument{
+        \renewcommand{\lstlistingname}{Kodeliste}
+        \renewcommand{\lstlistlistingname}{Kodelister}
+        \crefname{listing}{kodeliste}{kodelister}
+        \crefname{equation}{ligning}{ligninger}
+        \crefname{appendix}{vedlegg}{vedlegg}
+        \crefname{paper}{artikkel}{artikler}
+        \addto\captionsnorsk{
+            \renewcommand{\appendixname}{Vedlegg}
+            \renewcommand{\glossaryname}{Ordliste}
+            \renewcommand{\acronymname}{Akronymer}
+        }
+    }
+}
+
+% Nynorsk
+\DeclareOption{nynorsk}{
+    \capitalizefalse
+    \def\papername{Artikkel}
+    \newcommand{\USN}{{U}niversitetet i {S}øraust-{N}oreg}
+    \newcommand{\CampusKongsberg}{campus {K}ongsberg}
+    \newcommand{\FacultyTNM}{{F}akultet for teknologi, naturvitskap og maritime fag}
+    \newcommand{\DepartmentSIS}{{I}nstitutt for realfag og industrisystem}
+    \newcommand{\USNLogoName}{USN-logo_sort-NN}
+    \AtBeginDocument{
+        \renewcommand{\lstlistingname}{Kodeliste}
+        \renewcommand{\lstlistlistingname}{Kodelister}
+        \crefname{listing}{kodeliste}{kodelister}
+        \crefname{equation}{likning}{likningar}
+        \crefname{table}{tabell}{tabellar}
+        \crefname{figure}{figur}{figurar}
+        \crefname{section}{avsnitt}{avsnitt}
+        \crefname{chapter}{kapittel}{kapittel}
+        \crefname{appendix}{vedlegg}{vedlegg}
+        \crefname{paper}{artikkel}{artiklar}
+        \renewcommand{\appendixname}{Vedlegg}
+        \addto\captionsnynorsk{
+            \renewcommand{\appendixname}{Vedlegg}
+            \renewcommand{\glossaryname}{Ordliste}
+            \renewcommand{\acronymname}{Akronym}
+        }
+    }
+}
+
+% Process the given options
+\ProcessOptions\relax
+
+%% Define colors from https://brandpad.io/usn
+
+% new colours as of 2023
+\RequirePackage{xcolor}                     % selecting text color
+
+% level 1
+\definecolor{lilla}{RGB}{120,0,240}
+\definecolor{medium-lilla}{RGB}{147,89,239}
+\definecolor{lys-lilla}{RGB}{205,185,252}
+\definecolor{indigo}{RGB}{47,11,99}
+\definecolor{medium-indigo}{RGB}{149,149,249}
+\definecolor{lys-indigo}{RGB}{218,217,255}
+% level 2
+\definecolor{oransje}{RGB}{255,98,2}
+\definecolor{beige}{RGB}{255,217,177}
+\definecolor{medium-beige}{RGB}{255,235,211}
+\definecolor{lys-beige}{RGB}{255,245,238}
+% level 3
+\definecolor{rosa}{RGB}{239,125,187}
+\definecolor{medium-rosa}{RGB}{255,204,237}
+\definecolor{syregronn}{RGB}{207,255,31}
+\definecolor{medium-syregronn}{RGB}{228,255,125}
+
+%%% old signal colours 2018-2023
+% colours
+\definecolor{PMS2369U}{RGB}{70,70,165}
+\definecolor{PMS200U}{RGB}{214,67,73}
+\definecolor{PMS120U}{RGB}{255,210,64}
+\definecolor{PMS312U}{RGB}{39,178,208}
+\definecolor{PMS2400U}{RGB}{59,175,162}
+% support colours
+\definecolor{PMS3005U}{RGB}{15,118,175}
+\definecolor{PMS310U}{RGB}{154,212,226}
+\definecolor{PMS327U}{RGB}{0,151,138}
+\definecolor{PMS358U}{RGB}{157,210,159}
+% additional colours
+\definecolor{PMS2332U}{RGB}{140,150,150}
+\definecolor{PMS2331U}{RGB}{175,182,179}
+\definecolor{PMS434U}{RGB}{210,215,215}
+\definecolor{PMS444U}{RGB}{126,148,146}
+\definecolor{PMS442U}{RGB}{166,182,179}
+\definecolor{PMS538U}{RGB}{200,215,215}
+% special colour
+\definecolor{PMS876}{RGB}{148,102,75} % copper
+
+
+%% Other common includes/packages
+
+\RequirePackage[utf8]{inputenc}             % for special characters in input
+\RequirePackage[T1]{fontenc}                % modern font encoding
+
+\RequirePackage[sfdefault]{carlito}         % font similar to Calibri
+\RequirePackage[scaled=.82]{DejaVuSansMono} % monospace font (for code)
+
+\RequirePackage{listings}
+\RequirePackage{csquotes}                   % recommended for biblatex
+\RequirePackage[
+    backend=biber,
+    style=ieee,
+    maxbibnames=99,
+    minbibnames=3,
+    maxcitenames=2,
+    mincitenames=1,
+    citestyle=numeric-comp,
+    sorting=none,
+    dashed=false
+]{biblatex}                                 % for bibliography
+
+\RequirePackage{etoolbox}                   % fixing list of listings spacing
+\RequirePackage{babel}                      % language specifics
+\RequirePackage{geometry}                   % page layout
+\RequirePackage{graphicx}                   % including figures
+\RequirePackage{amsmath,mathptmx}           % advanced math typesetting
+\RequirePackage[                            % subfigures with captions within figures
+    font=small,                             % and customisation of captions
+    labelfont=bf,
+    margin=\parindent
+]{caption}
+\RequirePackage[                            % and subfigures with captions within figures
+    font=small,
+    labelfont=bf,
+    margin=\parindent
+]{subcaption}
+\RequirePackage{csvsimple}                  % tables from csv files
+\RequirePackage{booktabs}                   % better formatting of tables
+\RequirePackage{gnuplottex}                 % for generating gnuplots on the fly
+\RequirePackage{hyperref}                   % interactive cross references
+\ifcapitalize
+    \RequirePackage[capitalize,noabbrev]{cleveref}   % automatic cross references
+\else
+    \RequirePackage[noabbrev]{cleveref}
+\fi
+\RequirePackage[acronym]{glossaries}        % create a glossary and acronym list
+\RequirePackage[skip=3pt]{parskip}          % add spacing between paragraphs
+
+
+%% set formatting of code listings
+\lstset{
+    frame=single,
+    basicstyle=\fontsize{9}{10}\ttfamily,
+    keywordstyle=\color{lilla}\bfseries,
+    stringstyle=\color{oransje},
+    commentstyle=\color{gray},
+    identifierstyle=\color{black},
+    numberstyle=\fontsize{7}{8}\selectfont,
+    literate=
+        {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+        {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+        {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+        {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+        {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+        {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+        {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+        {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+        {Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
+        {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+        {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+        {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+        {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
+        {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
+}
+
+
+
+% Settings for hyperref: setting all the links black for best printing. They will still be clickable in the PDF
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,    % internal links (change box color with linkbordercolor)
+    citecolor=black,    % links to bibliography
+    filecolor=black,    % file links
+    urlcolor=black      % external links
+}

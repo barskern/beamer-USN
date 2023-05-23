@@ -1,83 +1,114 @@
-\documentclass[aspectratio=169]{beamer}
+\documentclass[american,aspectratio=169]{beamer}
 % Use aspectration=43 for, surprise, 4:3 aspect ratio
 % Class options include: notes, notesonly, handout, trans,
 %                        hidesubsections, shadesubsections,
 %                        inrow, blue, red, grey, brown
 
-\usetheme{usn}
-%\usepackage[]{cite}
-%\usepackage{subfig}
-\usepackage{graphicx}
-%\usepackage{pdfpages}
-%\usepackage{epstopdf}
-\setlength{\parindent}{0pt}
-
 \title{This is a Title}
-\subtitle[~--~ This is a short subtitle]{This is a subtitle}
+\subtitle[Short Subtitle]{This is a Subtitle}
 \author{A. U. Thor}
-\institute[USN]{Department of This and That \\ University of South-Eastern Norway, Campus NN, NN, Norway}
+\institute[USN]{\USN \\ \FacultyTNM \\ \DepartmentSIS}
 \date{\today}
 
+\usetheme{usn}
+
+\addbibresource{usntemplate.bib}
+
+\input{glossary.tex} % add glossary and acronyms so we can reference to them
+
 \begin{document}
+
 % Creates title page of slide show using above information
 \usntitlepage
 
-%%\section[Outline]{}
-%% Creates table of contents slide incorporating
-%% all \section and \subsection commands
-%\begin{frame}
-%\frametitle{Outline}
-%  \tableofcontents
-%\end{frame}
+\section[Outline]{}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Creates table of contents slide incorporating
+% all \section and \subsection commands
+
+\begin{frame}
+	\frametitle{Outline}
+	\tableofcontents
+\end{frame}
+
 \section{Introduction}
 
-%%%%%%%%%%%%
 \begin{frame}
-\frametitle{The first page of the presentation}
-\begin{itemize}
-\item Here's a bullet point
-\begin{itemize}
-\item The second bullet point is here
-\item A third bullet point might appear here
-\begin{itemize}
-\item The fourth bullet point of this amazing list
-\end{itemize}
-\end{itemize}
-\end{itemize}
+	\frametitle{The first page of the presentation}
+	\begin{itemize}
+		\item Here's a bullet point.
+			\begin{itemize}
+				\item The second bullet point is here, an is
+					about~\textcite{claerbout1991scrutiny}.
+				\item A third bullet point might appear here.
+					\begin{itemize}
+						\item The fourth bullet point of this amazing list, with
+							a glossary entry about \gls{bibliography}.
+						\item The fifth bullet point contains an acronym for \gls{gcd}.
+					\end{itemize}
+			\end{itemize}
+	\end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Fonts}
-  \begin{itemize}
-  \item The \href{https://brandpad.io/usn}{university design manual} states that
-    \emph{ITC Clearface} and \emph{Maison Neue} are to be used.
-    \begin{itemize}
-    \item \textit{Times Roman} makes ``$v$'' looks like the greek ``$\nu$'' in math mode.
-    \item Neither of those are free and need to be purchased.
-    \end{itemize}
-  \item Default fonts are therefore:
-    \begin{itemize}
-    \item for headings {\rmfamily Latin Modern Roman} instead of \emph{Times New Roman} (which is a sugested system font in case \emph{ITC Clearface} can not be used.
-    \item for normal text \emph{OpenSans} instead of \emph{Maison Neue} (which is a close match)
-    \end{itemize}
-  \end{itemize}
-  \vfill
+\section{Usage and Examples}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{Fonts}
+	\begin{itemize}
+		\item The \href{https://brandpad.io/usn}{university design manual}
+			states that \emph{ITC Clearface} and \emph{Maison Neue} are to be
+			used.
+			\begin{itemize}
+				\item \textit{Times Roman} makes ``$v$'' looks like the greek
+					``$\nu$'' in math mode. \item Neither of those are free and
+					need to be purchased.
+			\end{itemize}
+		\item Default fonts are therefore:
+			\begin{itemize}
+				\item for headings {\rmfamily Latin Modern Roman} instead of
+					\emph{Times
+					New Roman} (which is a sugested system font in case
+					\emph{ITC Clearface}.
+					can not be used. \item for normal text \emph{OpenSans} instead of
+					\emph{Maison Neue} (which is a close match).
+			\end{itemize}
+	\end{itemize}
 
 Math is typeset like this:
+
 \begin{align*}
--\frac{\partial}{\partial x}\left(vp\right)
-+\frac{1}{m}\frac{\partial}{\partial v}\left[\left( \frac{\partial U_\mathrm{T}}{\partial x} +bv-F_\mathrm{s}\right)p\right] & \\
-+\frac{1}{R}\frac{\partial}{\partial q}\left( \frac{\partial U_\mathrm{T}}{\partial q}p\right)
-+ \frac{S_\mathrm{a}}{2}\frac{\partial^2p}{\partial v^2} & = 0
+	-\frac{\partial}{\partial x}\left(vp\right)
+	+\frac{1}{m}\frac{\partial}{\partial v}\left[\left( \frac{\partial U_\mathrm{T}}{\partial x} +bv-F_\mathrm{s}\right)p\right] & \\
+	+\frac{1}{R}\frac{\partial}{\partial q}\left( \frac{\partial U_\mathrm{T}}{\partial q}p\right)
+	+ \frac{S_\mathrm{a}}{2}\frac{\partial^2p}{\partial v^2} & = 0
 \end{align*}
+
 \end{frame}
 
+\begin{frame}[fragile]
+	\frametitle{An Included Code Sample}
+
+	Here is an example of code included in the presentation:
+
+	\begin{lstlisting}[ caption={Python code in \LaTeX{} document},
+	label=lst:pythondoc, language=Python]
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 1)
+y = np.sin(2 * np.pi * x)
+
+plt.plot(x, y)
+plt.show()
+	\end{lstlisting}
+
+\end{frame}
+
+\section{USN Colors}
+
 \begin{frame}
-\frametitle{Predefined colours}
+
+\frametitle{Predefined Colors}
 \framesubtitle{Used from 2023 on}
 \centering
 
@@ -96,15 +127,13 @@ Math is typeset like this:
 
 \end{frame}
 
-
-
 \begin{frame}
-\frametitle{Old predefined colours}
+\frametitle{Old predefined colors}
 \framesubtitle{Used from 2018 to 2023}
 \centering
 
 \begin{tabular}{llll}
-  Signal colours                             & Support colours                            & Extra hues                                 \\
+  Signal colors                             & Support colors                            & Extra hues                                 \\
   \hline                                                                                                                               \\
   {\color{PMS2369U}\rule{4em}{2ex}} PMS2369U &                                            & {\color{PMS2332U}\rule{4em}{2ex}} PMS2332U \\
   {\color{PMS200U}\rule{4em}{2ex}} PMS200U   &                                            & {\color{PMS2331U}\rule{4em}{2ex}} PMS2331U \\
@@ -113,11 +142,17 @@ Math is typeset like this:
                                              & {\color{PMS310U}\rule{4em}{2ex}} PMS310U   & {\color{PMS442U}\rule{4em}{2ex}} PMS442U   \\
   {\color{PMS2400U}\rule{4em}{2ex}} PMS2400U & {\color{PMS327U}\rule{4em}{2ex}} PMS327U   & {\color{PMS538U}\rule{4em}{2ex}} PMS538U   \\
                                              & {\color{PMS358U}\rule{4em}{2ex}} PMS358U   &                                            \\
-  Special colour                             &                                            &                                            \\
+  Special color                             &                                            &                                            \\
   \hline                                                                                                                               \\
   {\color{PMS876}\rule{4em}{2ex}} PMS876     &                                            &
 \end{tabular}
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+	%\frametitle{\bibname}
+	\frametitle{\refname}
+	\printbibliography[heading=none,title=none]
 \end{frame}
 
 \end{document}
