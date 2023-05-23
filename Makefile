@@ -4,6 +4,7 @@ SRCS=\
 	$(wildcard csvtables/*) \
 	$(wildcard figures/*) \
 	$(wildcard listings/*) \
+	baseusn.sty \
 	beamerthemeusn.sty \
 	$(NAME).bib \
 	$(NAME).tex \
